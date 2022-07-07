@@ -1,3 +1,3 @@
-# 3-FRACT-OL-42cursus
+# FRACT-OL-42cursus
 
 projeto grafico
