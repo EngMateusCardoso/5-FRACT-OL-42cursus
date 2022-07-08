@@ -3,7 +3,7 @@
 
 int handle_input(int keysys, t_win *win)
 {
-	if (keysys == 65307)
+        if (keysys == 65307)
         close_window(win);
 	else if (keysys == 65361)
         write(1, "lf\n", 3);
@@ -23,5 +23,5 @@ int	zoom(int keysys, int x, int y)
     else if (keysys == 5)
         write(1, "dw\n", 3);
     printf(" %d %d\n", x, y);
-	return (0);
+        return (0);
 }

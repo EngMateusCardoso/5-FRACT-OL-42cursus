@@ -3,7 +3,7 @@ NAME	= fratol.a
 
 #OBJ		= main.o
 
-SRC		= main_hook.c
+SRC		= main_dot.c
 
 CC		= gcc
 

@@ -8,8 +8,9 @@
 //erase
 #include <stdio.h>
 
-# define WIN_SIDE 800
+# define WIN_SIDE 500
 # define MLX_ERROR 1
+# define MAX_ITER 75
 
 typedef struct	s_img {
 	void	*img_ptr;
@@ -17,11 +18,16 @@ typedef struct	s_img {
 	int		bpp;
 	int		line_len;
 	int		endian;
+	float	xmin;
+	float	xmax;
+	float	ymin;
+	float	ymax;
 }				t_img;
 
 typedef struct	s_win {
 	void	*mlx_ptr;
 	char	*win_ptr;
+	t_img	img;
 }				t_win;
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);

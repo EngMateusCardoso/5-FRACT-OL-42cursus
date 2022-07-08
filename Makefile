@@ -14,6 +14,15 @@ MLX			= ./minilibx-linux/libmlx.a
 MLX_FLAGS	= -lXext -lX11 -lmlx
 LIBFT		= ./libft/libft.a
 
+LEAKS 		= valgrind
+LEAKS_FILE	= valgrind-out.txt
+LF 			= --leak-check=full \
+        		--show-leak-kinds=all \
+        		--track-origins=yes \
+        		--verbose \
+        		--log-file=$(LEAKS_FILE) \
+        		./fractol
+
 all: $(NAME)
 
 .c.o:
@@ -26,6 +35,9 @@ $(LIBFT):
 
 $(NAME): $(OBJS) $(MLX) $(LIBFT)
 		$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS)
+
+leaks: 
+	$(LEAKS) $(LF)
 
 clean:
 		make -C ./libft clean

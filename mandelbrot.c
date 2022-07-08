@@ -40,7 +40,7 @@ int		mandelbrot_iter(float x,float y)
 	i = 0;
 	zx = x;
 	zy = y;
-	while ((zx * zx) + (zy * zy) <= 4 && i < 500)
+	while ((zx * zx) + (zy * zy) <= 4 && i < MAX_ITER)
 	{
 		temp = zx;
 		zx = zx * zx - zy * zy + x;
@@ -54,22 +54,20 @@ void    mandelbrot(t_img	img)
 {
 	float	x;
 	float	y;
-	float	x_pass;
-	float	y_pass;
+	float	pass;
 	int		i;
 
-	x_pass = 0.005;
-	y_pass = 0.005;
-	x = -2;
-	while (x <= 2)
+	pass = 4.0/WIN_SIDE;
+	x = img.xmin;
+	while (x <= img.xmax)
 	{
-		y = -2;
-		while (y <= 2)
+		y = img.ymin;
+		while (y <= img.ymax)
 		{
 			i = mandelbrot_iter(x, y);
 			set_color_mandelbrot2(x, y, i, img);
-			y += y_pass;
+			y += pass;
 		}
-		x += x_pass;
+		x += pass;
 	}
 }
