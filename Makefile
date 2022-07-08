@@ -2,7 +2,9 @@
 NAME		= fractol
 
 SRCS		= fractol.c		\
-			mandelbrot.c
+			fractol_utils.c	\
+			mandelbrot.c	\
+			hook.c
 OBJS		= ${SRCS:.c=.o}
 
 RM			= rm -f

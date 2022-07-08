@@ -3,27 +3,29 @@
 
 int    start_window(void)
 {
-    void	*mlx_ptr;
-	void	*win_ptr;
+	t_win	win;
 	t_img	img;
 
-    mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
+    win.mlx_ptr = mlx_init();
+	if (win.mlx_ptr == NULL)
 		return(MLX_ERROR);
-	win_ptr = mlx_new_window(mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Set of Mandelbrot");
-	if (win_ptr == NULL)
+	win.win_ptr = mlx_new_window(win.mlx_ptr, WIN_SIDE, WIN_SIDE, "Fract-ol");
+	if (win.win_ptr == NULL)
 	{
-		free(win_ptr);
+		free(win.win_ptr);
 		return(MLX_ERROR);
 	}
-	img.img_ptr = mlx_new_image(mlx_ptr, 800, 800);
+	img.img_ptr = mlx_new_image(win.mlx_ptr, WIN_SIDE, WIN_SIDE);
 	img.addr = mlx_get_data_addr(img.img_ptr, &img.bpp, &img.line_len,&img.endian);
     mandelbrot(img);
-	mlx_put_image_to_window(mlx_ptr, win_ptr, img.img_ptr, 0, 0);
-	mlx_loop(mlx_ptr);
+	mlx_mouse_hook(win.win_ptr, zoom, &win);
+	mlx_hook(win.win_ptr, 2, 1L<<0, &handle_input, &win);
+	mlx_hook(win.win_ptr, 17, 1L<<0, &close_window, &win);
+	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img.img_ptr, 0, 0);
+	mlx_loop(win.mlx_ptr);
     return (0);
 }
-
+// mlx_destroy_window(mlx_ptr, win_ptr); and mlx_destroy_display(mlx_ptr);
 int main(void)
 {
     start_window();

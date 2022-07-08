@@ -1,40 +1,33 @@
 
 #include "fractol.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
-}
 
 void	set_color_mandelbrot(float x, float y, int i, t_img img)
 {
 	if (i < 1)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00F03C02);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00F03C02);
 	else if (i < 2)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00C21A01);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00C21A01);
 	else if (i < 4)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00A30006);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00A30006);
 	else if (i < 8)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x006B0103);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x006B0103);
 	else if (i < 16)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x001C0113);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x001C0113);
 }
 
 void	set_color_mandelbrot2(float x, float y, int i, t_img img)
 {
 	if (i < 1)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00EFD9B4);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00EFD9B4);
 	else if (i < 2)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00D6A692);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00D6A692);
 	else if (i < 4)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00A39081);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00A39081);
 	else if (i < 8)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x004D6160);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x004D6160);
 	else if (i < 16)
-		my_mlx_pixel_put(&img, x*(WIN_WIDTH/4)+(WIN_WIDTH/2), y*(WIN_HEIGHT/4)+(WIN_HEIGHT/2), 0x00292522);
+		my_mlx_pixel_put(&img, x*(WIN_SIDE/4)+(WIN_SIDE/2), y*(WIN_SIDE/4)+(WIN_SIDE/2), 0x00292522);
 }
 
 int		mandelbrot_iter(float x,float y)
