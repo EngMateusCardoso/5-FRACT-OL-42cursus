@@ -35,7 +35,7 @@ void	set_color_mandelbrot2(float x, float y, int i, t_img img)
 		color = 0x004D6160;
 	else if (i < 16)
 		color = 0x00292522;
-	my_mlx_pixel_put(&img, x/img.pass-(img.xmin/img.pass), y/img.pass-(img.ymin/img.pass), color);
+	my_mlx_pixel_put(&img, x/img.pass-img.xmin/img.pass, y/img.pass-img.ymin/img.pass, color);
 }
 
 int		mandelbrot_iter(float x,float y)
@@ -72,7 +72,7 @@ void    mandelbrot(t_img	img)
 		while (y <= img.ymax)
 		{
 			i = mandelbrot_iter(x, y);
-			set_color_mandelbrot2(x, y, i, img);
+			set_color_mandelbrot(x, y, i, img);
 			y += img.pass;
 		}
 		x += img.pass;
