@@ -22,6 +22,7 @@ typedef struct	s_img {
 	float	xmax;
 	float	ymin;
 	float	ymax;
+	float	pass;
 }				t_img;
 
 typedef struct	s_win {
@@ -30,11 +31,13 @@ typedef struct	s_win {
 	t_img	img;
 }				t_win;
 
+void	start_image(t_win *win);
+
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int 	close_window(t_win *win);
 
 int		handle_input(int keysys, t_win *win);
-int		zoom(int keysys, int x, int y);
+int		zoom(int keysys, int x, int y, t_win *win);
 
 void    mandelbrot(t_img	img);
 
