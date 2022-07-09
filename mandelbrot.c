@@ -1,26 +1,26 @@
 
 #include "fractol.h"
 
-
 void	set_color_mandelbrot(float x, float y, int i, t_img img)
 {
-	int color;
+	int	color;
+	int	increment;
 
-	color = 0x00000000;
-	if (i < 1)
-		color = 0x00F03C02;
-	else if (i < 2)
-		color = 0x00C21A01;
-	else if (i < 4)
-		color = 0x00A30006;
-	else if (i < 8)
-		color = 0x006B0103;
-	else if (i < 16)
-		color = 0x001C0113;
-	my_mlx_pixel_put(&img, x*(WIN_SIDE/(img.xmax-img.xmin))-(WIN_SIDE*img.xmin/(img.xmax-img.xmin)), y*(WIN_SIDE/(img.xmax-img.xmin))-(WIN_SIDE*img.ymin/(img.xmax-img.xmin)), color);
+	color = BLACK;
+	if (i < MAX_ITER)
+	{
+		if (img.color == RED)
+			increment = ((i/img.range)*img.range) * 16  << 16;
+		else if (img.color == GREEN)
+			increment = ((i/img.range)*img.range) * 16 << 8;
+		else
+			increment = ((i/img.range)*img.range) * 16;
+		color = img.color + increment;
+	}
+	my_mlx_pixel_put(&img, x/img.pass-img.xmin/img.pass, y/img.pass-img.ymin/img.pass, color);
 }
 
-void	set_color_mandelbrot2(float x, float y, int i, t_img img)
+void	set_color_mandelbrotback(float x, float y, int i, t_img img)
 {
 	int color;
 
@@ -29,11 +29,11 @@ void	set_color_mandelbrot2(float x, float y, int i, t_img img)
 		color = 0x00EFD9B4;
 	else if (i < 2)
 		color = 0x00D6A692;
-	else if (i < 4)
+	else if (i < 3)
 		color = 0x00A39081;
-	else if (i < 8)
+	else if (i < 4)
 		color = 0x004D6160;
-	else if (i < 16)
+	else if (i < MAX_ITER)
 		color = 0x00292522;
 	my_mlx_pixel_put(&img, x/img.pass-img.xmin/img.pass, y/img.pass-img.ymin/img.pass, color);
 }

@@ -18,6 +18,8 @@ int	start_window(void)
 	win.img.xmax = 2;
 	win.img.ymin = -2;
 	win.img.ymax = 2;
+	win.img.color = BLUE;
+	win.img.range = 5;
     win.mlx_ptr = mlx_init();
 	if (win.mlx_ptr == NULL)
 		return(MLX_ERROR);
@@ -35,9 +37,12 @@ int	start_window(void)
 	mlx_loop(win.mlx_ptr);
     return (0);
 }
-// mlx_destroy_window(mlx_ptr, win_ptr); and mlx_destroy_display(mlx_ptr);
-int main(void)
+
+int main(int argc, char **argv)
 {
-    start_window();
+	if (check_args(argc, argv))
+	{
+		start_window();
+	}
     return (0);
 }
