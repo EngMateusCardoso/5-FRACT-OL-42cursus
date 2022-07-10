@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:10:06 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/10 02:21:48 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/10 02:27:33 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		mandelbrot_iter(float x,float y)
 	return (i);
 }
 
-void	mandelbrot(t_img	img)
+void	mandelbrot(t_img img)
 {
 	float	x;
 	float	y;
