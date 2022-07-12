@@ -12,6 +12,13 @@
 
 #include "fractol.h"
 
+int	ft_pow(int base, int exp)
+{
+	if (exp == 0)
+		return (1);
+	return (base * ft_pow(base, --exp));
+}
+
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;

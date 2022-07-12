@@ -14,6 +14,7 @@ NAME		= fractol
 
 SRCS		= fractol.c		\
 			fractol_utils.c	\
+			check_args.c	\
 			mandelbrot.c	\
 			hook.c
 OBJS		= ${SRCS:.c=.o}
@@ -22,7 +23,7 @@ RM			= rm -f
 CC			= gcc
 FLAGS		= -Wall -Wextra -Werror
 MLX			= ./minilibx-linux/libmlx.a
-MLX_FLAGS	= -lXext -lX11 -lmlx
+MLX_FLAGS	= -lXext -lX11 -lmlx -lm
 LIBFT		= ./libft/libft.a
 
 LEAKS 		= valgrind

@@ -16,8 +16,7 @@
 # include "./minilibx-linux/mlx.h"
 # include "./libft/libft.h"
 # include <stdlib.h>
-//erase
-#include <stdio.h>
+# include <math.h>
 
 # define WIN_SIDE 500
 # define MLX_ERROR 1
@@ -33,6 +32,7 @@ typedef struct	s_img {
 	int		bpp;
 	int		line_len;
 	int		endian;
+	char	name;
 	double	xmin;
 	double	xmax;
 	double	ymin;
@@ -40,25 +40,31 @@ typedef struct	s_img {
 	double	pass;
 	int		color;
 	int		range;
+	double	julia_x;
+	double	julia_y;
 }				t_img;
 
 typedef struct	s_win {
 	void	*mlx_ptr;
 	char	*win_ptr;
-	char	*name;
-	double	*julia_x;
-	double	*julia_y;
 	t_img	img;
 }				t_win;
 
-void	start_image(t_win *win);
 
+// fractol.c
+void	start_image(t_win *win);
+//fractol_utils.c
+
+// check_args.c
+
+//
+void	fractal(t_img img);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int 	close_window(t_win *win);
+double	convert_params(char *nbr);
+int		ft_pow(int base, int exp);
 
 int		handle_input(int keysys, t_win *win);
 int		zoom(int keysys, int x, int y, t_win *win);
-
-void    mandelbrot(t_img	img);
 
 #endif

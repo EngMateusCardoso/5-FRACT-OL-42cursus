@@ -21,11 +21,20 @@ void	set_color_mandelbrot(float x, float y, int i, t_img img)
 	if (i < MAX_ITER)
 	{
 		if (img.color == RED)
-			increment = ((i/img.range)*img.range) * 16  << 16;
-		else if (img.color == GREEN)
-			increment = ((i/img.range)*img.range) * 16 << 8;
-		else
+		{
 			increment = ((i/img.range)*img.range) * 16;
+			increment += ((i/img.range)*img.range) * 16  << 8;
+		}
+		else if (img.color == GREEN)
+		{
+			increment = ((i/img.range)*img.range) * 16;
+			increment += ((i/img.range)*img.range) * 16  << 16;
+		}
+		else
+		{
+			increment = ((i/img.range)*img.range) * 16 << 16;
+			increment += ((i/img.range)*img.range) * 16  << 8;
+		}
 		color = img.color + increment;
 	}
 	my_mlx_pixel_put(&img, x/img.pass-img.xmin/img.pass, y/img.pass-img.ymin/img.pass, color);
@@ -49,7 +58,7 @@ void	set_color_mandelbrotback(float x, float y, int i, t_img img)
 	my_mlx_pixel_put(&img, x/img.pass-img.xmin/img.pass, y/img.pass-img.ymin/img.pass, color);
 }
 
-int		mandelbrot_iter(float x,float y)
+/* int		mandelbrot(float x,float y)
 {
 	float	zx;
 	float	zy;
@@ -67,9 +76,91 @@ int		mandelbrot_iter(float x,float y)
 		i++;
 	}
 	return (i);
+} */
+
+int		mandelbrot(float x,float y)
+{
+	float	zx;
+	float	zy;
+	float	temp;
+	int		i;
+
+	i = 0;
+	zx = x;
+	zy = y;
+	while ((zx * zx) + (zy * zy) <= 4 && i < MAX_ITER)
+	{
+		temp = zx;
+		zx = zx * zx *zx - 3 * zx * zy * zy + x;
+		zy = - zy * zy * zy + 3 * temp * temp * zy + y;
+		i++;
+	}
+	return (i);
 }
 
-void	mandelbrot(t_img img)
+/*int		mandelbrot(float x,float y)
+{
+	float	zx;
+	float	zy;
+	float	temp;
+	int		i;
+
+	i = 0;
+	zx = ((x*x) - (y*y))/((((x*x) - (y*y))*((x*x) - (y*y)))-((2*x*y)*(2*x*y)));
+	zy = (-2*x*y)/((((x*x) - (y*y))*((x*x) - (y*y)))-((2*x*y)*(2*x*y))) ;
+	x = zx;
+	y = zy;
+	while ((zx * zx) + (zy * zy) <= 4 && i < MAX_ITER)
+	{
+		temp = zx;
+		zx = sinh(zx)*cos(zy) + x;
+		zy = cosh(temp)*sin(zy)+ y;
+		i++;
+	}
+	return (i);
+}*/
+
+/*int		mandelbrot(float x,float y)
+{
+	float	zx;
+	float	zy;
+	float	temp;
+	int		i;
+
+	i = 0;
+	zx = cosh(y)*sin(x) + 0.1*sinh(y)*cos(x);
+	zy = sinh(y)*cos(x) - 0.1*cosh(y)*sin(x);
+	while ((zx * zx) + (zy * zy) <= 4 && i < MAX_ITER)
+	{
+		temp = zx;
+		zx = cosh(zy)*sin(zx) + 0.1*sinh(zy)*cos(zx);
+		zy = sinh(zy)*cos(temp) - 0.1*cosh(zy)*sin(temp);
+		i++;
+	}
+	return (i);
+}*/
+
+int		julia(float x,float y, t_img *img)
+{
+	float	zx;
+	float	zy;
+	float	temp;
+	int		i;
+
+	i = 0;
+	zx = x;
+	zy = y;
+	while ((zx * zx) + (zy * zy) <= 4 && i < MAX_ITER)
+	{
+		temp = zx;
+		zx = zx * zx - zy * zy + img->julia_x;
+		zy = 2 * temp * zy + img->julia_y;
+		i++;
+	}
+	return (i);
+}
+
+void	fractal(t_img img)
 {
 	float	x;
 	float	y;
@@ -82,7 +173,10 @@ void	mandelbrot(t_img img)
 		y = img.ymin;
 		while (y <= img.ymax)
 		{
-			i = mandelbrot_iter(x, y);
+			if (img.name == 'm')
+				i = mandelbrot(x, y);
+			else if (img.name == 'j')
+				i = julia(x, y, &img);// cabe 5
 			set_color_mandelbrot(x, y, i, img);
 			y += img.pass;
 		}
