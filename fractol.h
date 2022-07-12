@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:09:10 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/12 02:59:21 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/12 04:43:44 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,22 @@ typedef struct	s_win {
 	t_img	img;
 }				t_win;
 
-
 // fractol.c
 void	start_image(t_win *win);
 //fractol_utils.c
-
+double	convert_params(char *nbr);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int 	close_window(t_win *win);
 // check_args.c
 int		check_args(int argc, char **argv);
 void	args_erro(void);
-void	fractal(t_img img);
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-int 	close_window(t_win *win);
-double	convert_params(char *nbr);
-int		ft_pow(int base, int exp);
-
+//Mandelbrot
+int		mandelbrot(double x, double y, t_img *img);
+//Julia
+int		julia(double x,double y, t_img *img);
+//Colors
+void	set_color_mandelbrot(double x, double y, int i, t_img *img);
+//hooks
 int		handle_input(int keysys, t_win *win);
 int		zoom(int keysys, int x, int y, t_win *win);
 

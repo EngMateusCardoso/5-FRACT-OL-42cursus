@@ -6,7 +6,7 @@
 #    By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/10 02:09:58 by matcardo          #+#    #+#              #
-#    Updated: 2022/07/10 02:10:00 by matcardo         ###   ########.fr        #
+#    Updated: 2022/07/12 06:34:26 by matcardo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRCS		= fractol.c		\
 			fractol_utils.c	\
 			check_args.c	\
 			mandelbrot.c	\
+			julia.c			\
+			colors.c		\
 			hook.c
 OBJS		= ${SRCS:.c=.o}
 
@@ -50,6 +52,9 @@ $(NAME): $(OBJS) $(MLX) $(LIBFT)
 
 leaks: 
 	$(LEAKS) $(LF)
+
+norm:
+	norminette ${SRCS}
 
 clean:
 		make -C ./libft clean
