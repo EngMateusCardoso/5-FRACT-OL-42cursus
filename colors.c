@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 03:41:47 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/12 21:32:45 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:49:11 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	set_color_vintage(double x, double y, int i, t_img *img)
 	else if (((i / img->range) * img->range) % 5 == 4)
 		color = 0x004D6160;
 	else if (((i / img->range) * img->range) % 5 == 0)
-		color = 0x007EFFF8;
+		color = 0x00292522;
 	my_mlx_pixel_put(img, x / img->pass - img->xmin / img->pass, \
 	y / img->pass - img->ymin / img->pass, color);
 }
