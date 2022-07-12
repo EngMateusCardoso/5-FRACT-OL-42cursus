@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:08:31 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/10 02:18:41 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/12 02:59:02 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,79 +44,25 @@ int	start_window(t_win *win)
 
 void	init_win(t_win *win, int argc, char **argv)
 {
-	win->img.name = argv[1][0];
+	win->img.type = argc;
 	win->img.xmin = -2;
 	win->img.xmax = 2;
 	win->img.ymin = -2;
 	win->img.ymax = 2;
 	win->img.color = BLUE;
 	win->img.range = 5;
-	if (argc == 4)
+	if (argc == 4 || argc == 5)
 	{
 		win->img.julia_x = convert_params(argv[2]);
 		win->img.julia_y = convert_params(argv[3]); 
 	}
-}
-
-int	check_julia_nbr(char *nbr)
-{
-	int	index;
-
-	index = 0;
-	if (nbr[index] == '+' || nbr[index] == '-')
-		index++;
-	if (!ft_isdigit(nbr[index]))
-		return (0);
-	index++;
-	if (!(nbr[index] == '.'))
-		return (0);
-	index++;
-	if (!ft_isdigit(nbr[index]))
-		return (0);
-	while (ft_isdigit(nbr[index]))
-		index++;
-	if (nbr[index])
-		return (0);
-	return (1);
-}
-
-int	check_args(int argc, char **argv)
-{
-	if (argc == 2)
+	if (argc == 3 || argc == 5)
 	{
-		if (!ft_strncmp("mandelbrot", argv[1], ft_strlen("mandelbrot")))
-			return (1);
-		return (0);
+		win->img.grau = argv[2][0] - 48;
 	}
-	else if (argc == 4)
-	{
-		if (!ft_strncmp("julia", argv[1], ft_strlen("julia")) \
-		&& check_julia_nbr(argv[2]) && check_julia_nbr(argv[3]))
-			return (1);
-		return (0);
-	}
-	return (0);
 }
 
-double	convert_params(char *nbr)
-{
-	double	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	if (*nbr == '+' || *nbr == '-')
-	{
-		sign = -1;
-		nbr++;
-	}
-	result = *nbr - 48;
-	nbr += 2;
-	result += (double)(ft_atoi(nbr))/(double)(ft_pow(10, ft_strlen(nbr)));
-	return(result * sign);
-}
-
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_win	win;
 
@@ -125,17 +71,7 @@ int		main(int argc, char **argv)
 		init_win(&win, argc, argv);
 		start_window(&win);
 	}
-	else //--------------------------------------------------------------------
-	{
-		ft_putstr_fd("\nWrong arguments bad request!\n", 1);
-		ft_putstr_fd("----------------------------\n", 1);
-		ft_putstr_fd("Try something like this:\n\n", 1);
-		ft_putstr_fd("./fractol mandelbrot\n", 1);
-		ft_putstr_fd("./fractol julia x.xxx x.xxx\n", 1);
-		ft_putstr_fd("Julia ex.: (0.4, 0.6) (-0.4, -0.6) (0.0, 1.0)\n", 1);
-		ft_putstr_fd("\t(0.285, 0.0) (0.285, 0.01) (-0.74, 0.12)\n", 1);
-		ft_putstr_fd("\t(-1.312 0.0) (0.37, -0.28) (0.45, 0.1428)\n", 1);
-		ft_putstr_fd("\t(-0.70176 -0.3842) (-0.835, -0.2321)\n", 1);// cabe 5
-	}
+	else
+		args_erro();
 	return (0);
 }

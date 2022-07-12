@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:09:10 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/10 02:09:13 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/12 02:59:21 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_img {
 	int		bpp;
 	int		line_len;
 	int		endian;
-	char	name;
+	int		type;
 	double	xmin;
 	double	xmax;
 	double	ymin;
@@ -42,6 +42,7 @@ typedef struct	s_img {
 	int		range;
 	double	julia_x;
 	double	julia_y;
+	int		grau;
 }				t_img;
 
 typedef struct	s_win {
@@ -56,8 +57,8 @@ void	start_image(t_win *win);
 //fractol_utils.c
 
 // check_args.c
-
-//
+int		check_args(int argc, char **argv);
+void	args_erro(void);
 void	fractal(t_img img);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int 	close_window(t_win *win);

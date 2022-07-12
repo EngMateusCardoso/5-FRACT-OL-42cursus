@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:10:06 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/10 02:27:33 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/12 03:04:53 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,10 +173,10 @@ void	fractal(t_img img)
 		y = img.ymin;
 		while (y <= img.ymax)
 		{
-			if (img.name == 'm')
+			if (img.type == 2)
 				i = mandelbrot(x, y);
-			else if (img.name == 'j')
-				i = julia(x, y, &img);// cabe 5
+			else if (img.type == 4)
+				i = julia(x, y, &img);
 			set_color_mandelbrot(x, y, i, img);
 			y += img.pass;
 		}
