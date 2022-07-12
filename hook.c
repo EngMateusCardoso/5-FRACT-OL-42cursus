@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:08:38 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/12 06:46:20 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:44:45 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	change_color(int keysys, t_win *win)
 		win->img.color = GREEN;
 	else if (keysys == 98)
 		win->img.color = BLUE;
+	else if (keysys == 112)
+	{
+		if (win->img.color == 1 || win->img.color == -1)
+			win->img.color *= -1;
+		else
+			win->img.color = 1;
+	}
 	else if (keysys == 44)
 		win->img.range += 1;
 	else if (keysys == 46)
@@ -29,12 +36,9 @@ void	change_color(int keysys, t_win *win)
 	}
 }
 
-int	handle_input(int keysys, t_win *win)
+void	panning(int keysys, t_win *win)
 {
-	win->img.pass = (win->img.xmax - win->img.xmin) / WIN_SIDE;
-	if (keysys == 65307)
-		close_window(win);
-	else if (keysys == 65361)
+	if (keysys == 65361)
 	{
 		win->img.xmin -= 10 * win->img.pass;
 		win->img.xmax -= 10 * win->img.pass;
@@ -53,9 +57,19 @@ int	handle_input(int keysys, t_win *win)
 	{
 		win->img.ymin += 10 * win->img.pass;
 		win->img.ymax += 10 * win->img.pass;
-	}
+	}	
+}
+
+int	handle_input(int keysys, t_win *win)
+{
+	win->img.pass = (win->img.xmax - win->img.xmin) / WIN_SIDE;
+	if (keysys == 65307)
+		close_window(win);
+	else if (keysys == 65361 || keysys == 65362 || keysys == 65363 \
+	|| keysys == 65363)
+		panning(keysys, win);
 	else if (keysys == 114 || keysys == 103 || keysys == 98 \
-	|| keysys == 44 || keysys == 46)
+	|| keysys == 112 || keysys == 44 || keysys == 46)
 		change_color(keysys, win);
 	start_image(win);
 	return (0);

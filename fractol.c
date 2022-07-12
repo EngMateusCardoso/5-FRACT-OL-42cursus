@@ -29,7 +29,7 @@ void	print_screen(t_img *img)
 				i = mandelbrot(x, y, img);
 			else if (img->type == 4 || img->type == 5)
 				i = julia(x, y, img);
-			set_color_mandelbrot(x, y, i, img);
+			set_color(x, y, i, img);
 			y += img->pass;
 		}
 		x += img->pass;
@@ -73,8 +73,8 @@ void	init_win(t_win *win, int argc, char **argv)
 	win->img.xmax = 2.0;
 	win->img.ymin = -2.0;
 	win->img.ymax = 2.0;
-	win->img.color = BLUE;
-	win->img.range = 5;
+	win->img.color = 1;
+	win->img.range = 4;
 	if (argc == 4)
 	{
 		win->img.julia_x = convert_params(argv[2]);
