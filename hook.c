@@ -6,7 +6,7 @@
 /*   By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 02:08:38 by matcardo          #+#    #+#             */
-/*   Updated: 2022/07/12 21:44:45 by matcardo         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:35:18 by matcardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	handle_input(int keysys, t_win *win)
 	if (keysys == 65307)
 		close_window(win);
 	else if (keysys == 65361 || keysys == 65362 || keysys == 65363 \
-	|| keysys == 65363)
+	|| keysys == 65364)
 		panning(keysys, win);
 	else if (keysys == 114 || keysys == 103 || keysys == 98 \
 	|| keysys == 112 || keysys == 44 || keysys == 46)
@@ -89,7 +89,7 @@ int	zoom(int keysys, int x, int y, t_win *win)
 	float	range;
 
 	range = win->img.xmax - win->img.xmin;
-	if (keysys == 4)
+	if (keysys == 4 && win->img.pass > 0.00000000000005)
 	{
 		win->img.xmin += 0.1 * range;
 		win->img.xmax -= 0.1 * range;
