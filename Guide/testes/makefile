@@ -10,7 +10,7 @@ CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 
 $(NAME):
-	$(CC) $(SRC) ../minilibx-linux/libmlx.a -lXext -lX11 -lmlx
+	$(CC) $(SRC) ../../minilibx-linux/libmlx.a -lXext -lX11 -lmlx
 
 #$(NAME): $(OBJ)
 #	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)

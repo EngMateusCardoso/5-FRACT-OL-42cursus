@@ -1,4 +1,4 @@
-# include "../minilibx-linux/mlx.h"
+# include "../../minilibx-linux/mlx.h"
 # include <stdlib.h>
 #define MLX_ERROR 1
 

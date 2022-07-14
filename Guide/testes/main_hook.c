@@ -1,4 +1,4 @@
-#include <mlx.h>
+# include "../../minilibx-linux/mlx.h"
 
 typedef struct	s_vars {
 	void	*mlx;
