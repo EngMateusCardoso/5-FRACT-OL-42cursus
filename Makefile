@@ -6,7 +6,7 @@
 #    By: matcardo <matcardo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/10 02:09:58 by matcardo          #+#    #+#              #
-#    Updated: 2022/07/12 06:34:26 by matcardo         ###   ########.fr        #
+#    Updated: 2022/07/15 05:01:06 by matcardo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,8 @@ $(LIBFT):
 $(NAME): $(OBJS) $(MLX) $(LIBFT)
 		$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS)
 
+bonus: $(NAME)
+
 leaks: 
 	$(LEAKS) $(LF)
 
@@ -64,3 +66,9 @@ fclean:	clean
 		make -C ./minilibx-linux clean
 		make -C ./libft fclean
 		$(RM) $(NAME)
+
+re:			fclean all
+
+rebonus:	fclean bonus
+
+.PHONY:		bonus all clean fclean re rebonus
